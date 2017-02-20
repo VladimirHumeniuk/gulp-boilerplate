@@ -56,3 +56,5 @@ gulp.task("build", ['images'] ,function(){
 });
 
 // дефолтный таск
+gulp.task('default', ['start', 'watch']);
+
