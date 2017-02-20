@@ -21,13 +21,6 @@ gulp.task('start', function(){
 		}))
 });
 
-//replace
-gulp.task('replaceFonts', function(){
-	gulp.src('app/fonts/**/*')
-		.pipe(gulp.dest('build/fonts'))
-})
-
-
 // проставляем префиксы для последних 20 версий браузеров
 gulp.task('style', function(){
 	gulp.src('app/sass/**/*.sass')
@@ -60,7 +53,6 @@ gulp.task("build", ['images'] ,function(){
 		.pipe(gulpif("*.css", csso()))
 		.pipe(gulpif("*.js", uglify()))
 		.pipe(gulp.dest('build'))
-})
+});
 
 // дефолтный таск
-gulp.task('default', ['start', 'watch'])
