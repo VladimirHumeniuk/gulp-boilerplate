@@ -2,15 +2,13 @@ var gulp = require('gulp');
 var server = require('gulp-server-livereload'); // сервер
 var sass = require('gulp-sass'); // компилирует sass в css 
 var prefix = require('gulp-autoprefixer'); // проставляет префиксы для кроссбраузерности
-
 var useref = require('gulp-useref'); // парсит специфичные блоки и конкатенирует описанные в них стили и скрипты.
 var gulpif = require('gulp-if'); // учим uglify разделять css и js
 var uglify = require('gulp-uglify'); // будет сжимать наш JS
 var csso = require('gulp-csso'); // будет сжимать наш css
-
 var imagemin = require('gulp-imagemin'); // минифицирует картинки
 var cleanDest = require('gulp-dest-clean'); // подчищает билд проекта от ненужных файлов
-
+var changed = require('gulp-changed'); // отслеживает изменения в файлах.
 
 // запускаем сервер
 gulp.task('start', function(){
@@ -36,7 +34,9 @@ gulp.task('images', function () {
     gulp.src('./app/img/**/*') //указывая такой путь, мы говорим плагину компилировать все файлы в папке app/img
     	.pipe(cleanDest('build/img')) // папка, за которой следить плагину dest-clean, чтобы в продакшн версию проекта не попали лишние картинки
         .pipe(imagemin({
-          progressive: true
+            progressive: true,
+			quality: 50,
+			smooth: 30
         }))
         .pipe(gulp.dest('build/img')); // папка, в которую будут поступать оптимизированные картинки
 });
@@ -45,6 +45,14 @@ gulp.task('images', function () {
 gulp.task('watch', function(){
 	gulp.watch('app/sass/**/*.sass', ['style'])
 });
+
+// смотрим за sass файлами, чтобы каждый раз не компилировать в сss все файлы, а только измененные
+gulp.task('changed', () =>
+    gulp.src('app/sass/**/*.sass')
+         .pipe(changed('app/sass', {extension: '.sass'}))
+        .pipe(sass())
+        .pipe(gulp.dest('app/css'))
+);
 
 // собираем наш проект
 gulp.task("build", ['images'] ,function(){
@@ -56,5 +64,4 @@ gulp.task("build", ['images'] ,function(){
 });
 
 // дефолтный таск
-gulp.task('default', ['start', 'watch']);
-
+gulp.task('default', ['start', 'watch', 'changed']);
