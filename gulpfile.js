@@ -1,14 +1,15 @@
 var gulp = require('gulp'); 
-var server = require('gulp-server-livereload'); // сервер
-var sass = require('gulp-sass'); // компилирует sass в css 
-var prefix = require('gulp-autoprefixer'); // проставляет префиксы для кроссбраузерности
-var useref = require('gulp-useref'); // парсит специфичные блоки и конкатенирует описанные в них стили и скрипты.
-var gulpif = require('gulp-if'); // учим uglify разделять css и js
-var uglify = require('gulp-uglify'); // будет сжимать наш JS
-var csso = require('gulp-csso'); // будет сжимать наш css
-var imagemin = require('gulp-imagemin'); // минифицирует картинки
-var cleanDest = require('gulp-dest-clean'); // подчищает билд проекта от ненужных файлов
-var changed = require('gulp-changed'); // отслеживает изменения в файлах.
+	server = require('gulp-server-livereload'); // сервер
+	sass = require('gulp-sass'); // компилирует sass в css 
+	prefix = require('gulp-autoprefixer'); // проставляет префиксы для кроссбраузерности
+	useref = require('gulp-useref'); // парсит специфичные блоки и конкатенирует описанные в них стили и скрипты.
+	gulpif = require('gulp-if'); // учим uglify разделять css и js
+	uglify = require('gulp-uglify'); // будет сжимать наш JS
+	csso = require('gulp-csso'); // будет сжимать наш css
+	imagemin = require('gulp-imagemin'); // минифицирует картинки
+	cleanDest = require('gulp-dest-clean'); // подчищает билд проекта от ненужных файлов
+	changed = require('gulp-changed'); // отслеживает изменения в файлах.
+
 
 // запускаем сервер
 gulp.task('start', function(){
@@ -39,6 +40,12 @@ gulp.task('images', function () {
 			smooth: 30
         }))
         .pipe(gulp.dest('build/img')); // папка, в которую будут поступать оптимизированные картинки
+});
+
+// переносим шрифты в билд
+gulp.task('fonts', function() {
+  return gulp.src(('./app/fonts/**/*'), ['*.eot','*.svg','*.ttf','*.woff','*.woff2'])  
+    .pipe(gulp.dest('build/fonts'));                                     
 });
 
 // отслеживаем изменения в sass файлах чтобы сразу компилировать их в css
