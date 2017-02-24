@@ -32,7 +32,7 @@ gulp.task('style', function(){
 // уменьшаем картинки
 gulp.task('images', function () {
     gulp.src('./app/img/**/*') //указывая такой путь, мы говорим плагину компилировать все файлы в папке app/img
-    	.pipe(cleanDest('build/img')) // папка, за которой следить плагину dest-clean, чтобы в продакшн версию проекта не попали лишние картинки
+    	.pipe(cleanDest('build/img')) 
         .pipe(imagemin({
             progressive: true,
 			quality: 50,
