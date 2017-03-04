@@ -1,7 +1,7 @@
 # Gulp Boilerplate
 
 <p align="center">
-  <img src ="https://pp.vk.me/c837734/v837734384/231dc/5YIRXQQTLnE.jpg" />
+  <img src ="https://vhumeniuk.com/img/5YIRXQQTLnE.jpg" />
 </p>
 
 Gulp Boilerplate – это шаблон настроек для сборщика Gulp, который вы с легкостью сможете использовать для сборки и разработки своих проектов, без необходимости каждый раз делать новую сборку и устанавливать все необходимые модули.
