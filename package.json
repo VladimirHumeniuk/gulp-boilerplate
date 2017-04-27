@@ -1,6 +1,6 @@
 {
   "name": "gulp-boilerplate",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "start gulp template",
   "main": "index.html",
   "scripts": {
@@ -9,16 +9,22 @@
   "author": "Vladimir Humeniuk",
   "license": "ISC",
   "devDependencies": {
+    "critical": "^0.8.4",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-changed": "^2.0.0",
     "gulp-csso": "^2.0.0",
     "gulp-dest-clean": "^0.5.0",
+    "gulp-htmlmin": "^3.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
+    "gulp-merge-media-queries": "^0.2.1",
+    "gulp-pug": "^3.3.0",
     "gulp-sass": "^2.3.2",
-    "gulp-server-livereload": "^1.9.2",
+    /*"gulp-server-livereload": "^1.9.2",*/
+    "browser-sync": "*",
     "gulp-uglify": "^2.0.0",
-    "gulp-useref": "3.1.2"
+    "gulp-useref": "3.1.2",
+    "gulp-util": "^3.0.8"
   }
 }
