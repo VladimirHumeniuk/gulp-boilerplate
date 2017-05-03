@@ -1,5 +1,4 @@
 let gulp 	    = require('gulp');
-	// server    = require('gulp-server-livereload');
 	sass        = require('gulp-sass');
 	prefix      = require('gulp-autoprefixer');
 	useref      = require('gulp-useref');
@@ -15,14 +14,6 @@ let gulp 	    = require('gulp');
 	htmlmin     = require('gulp-htmlmin');
 	browserSync = require('browser-sync');
 	reload      = browserSync.reload;
-
-// gulp.task('start', () =>
-// 	gulp.src('app')
-// 		.pipe(server({
-// 			open: true,
-// 			livereload: true
-// 		}))
-// );
 
 gulp.task('browser-sync', () =>
 	browserSync({
@@ -100,4 +91,4 @@ gulp.task("build", ['images', 'fonts', 'htmlmin'], () =>
 		.pipe(gulp.dest('build'))
 );
 
-gulp.task('default', ['start', 'watch', 'changed']);
+gulp.task('default', ['start', 'watch']);
