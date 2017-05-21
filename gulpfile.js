@@ -2,7 +2,7 @@ let gulp 	    = require('gulp');
 	sass        = require('gulp-sass');
 	prefix      = require('gulp-autoprefixer');
 	useref      = require('gulp-useref');
-	pug         = require('gulp-pug'),
+	pug         = require('gulp-pug');
 	gulpif      = require('gulp-if');
 	uglify      = require('gulp-uglify');
 	csso        = require('gulp-csso');
@@ -18,7 +18,7 @@ let gulp 	    = require('gulp');
 gulp.task('browser-sync', () =>
 	browserSync({
 		server: {
-			baseDi: './'
+			baseDir: './'
 		},
 			startPath: 'app/index.html'
 	})
