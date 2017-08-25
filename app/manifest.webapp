@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "name": "Web Page",
+  "launch_path": "/index.html",
+  "description": "Short description",
+  "icons": {
+    "128": "/images/touch/icon-128x128.png"
+  },
+  "developer": {
+    "name": "Vladimir Humeniuk",
+    "url": "https://github.com/VladimirHumeniuk/"
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "en",
+  "permissions": {
+  },
+  "locales": {
+    "en": {
+      "name": "Web Page",
+      "description": "Short description"
+    }
+  }
+}
