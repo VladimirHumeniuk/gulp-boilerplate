@@ -59,13 +59,14 @@ gulp.task('styles', () => {
     'app/styles/**/*.scss',
     'app/styles/**/*.css'
   ])
-    .pipe($.newer('.tmp/styles/**/*.scss'))
+    .pipe($.newer('app/styles/**/*.scss'))
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       precision: 10
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
+    .pipe($.concat('main.min.css'))
     .pipe($.if('*.css', $.cssnano()))
     .pipe($.size({title: 'styles'}))
     .pipe($.sourcemaps.write('./'))
@@ -133,6 +134,7 @@ gulp.task('serve', ['pug', 'scripts', 'styles'], () => {
     port: 3000
   });
 
+  gulp.watch(['app/components/**/*.{scss,pug}'], ['styles', 'pug', reload]);
   gulp.watch(['app/pug/**/*.pug'], ['pug', reload]);
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
