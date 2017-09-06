@@ -1,5 +1,3 @@
-'use strict';
-
 import path from 'path';
 import gulp from 'gulp';
 import del from 'del';
@@ -33,6 +31,8 @@ gulp.task('images', () =>
 gulp.task('copy', () =>
   gulp.src([
     'fonts/*',
+    '!app/pug',
+    '!app/libs',
     'app/*',
     '!app/*.html',
     'node_modules/apache-server-configs/dist/.htaccess'
@@ -67,6 +67,7 @@ gulp.task('styles', () => {
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
     .pipe($.concat('main.min.css'))
+
     .pipe($.if('*.css', $.cssnano()))
     .pipe($.size({title: 'styles'}))
     .pipe($.sourcemaps.write('./'))
@@ -78,26 +79,26 @@ gulp.task('scripts', () =>
     gulp.src([
       './app/scripts/main.js'
     ])
-      .pipe($.newer('.tmp/scripts'))
-      .pipe($.sourcemaps.init())
-      .pipe($.babel())
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest('.tmp/scripts'))
-      .pipe($.concat('main.min.js'))
-      .pipe($.uglify({preserveComments: 'some'}))
+    .pipe($.newer('.tmp/scripts/**/*.js'))
+    .pipe($.sourcemaps.init())
+    .pipe($.babel())
+    .pipe($.sourcemaps.write())
+    .pipe(gulp.dest('.tmp/scripts'))
+    .pipe($.concat('main.min.js'))
+    .pipe($.uglify({preserveComments: 'some'}))
 
-      .pipe($.size({title: 'scripts'}))
-      .pipe($.sourcemaps.write('.'))
-      .pipe(gulp.dest('dist/scripts'))
-      .pipe(gulp.dest('.tmp/scripts'))
+    .pipe($.size({title: 'scripts'}))
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/scripts'))
+    .pipe(gulp.dest('.tmp/scripts'))
 );
 
 gulp.task('pug', () =>
   gulp.src('app/pug/*.pug')
-      .pipe($.pug({
-          pretty: '\t'
-      }))
-      .pipe(gulp.dest('app/'))
+    .pipe($.pug({
+        pretty: '\t'
+    }))
+    .pipe(gulp.dest('app/'))
 );
 
 gulp.task('html', () => {

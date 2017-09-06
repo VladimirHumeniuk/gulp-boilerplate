@@ -1,7 +1,5 @@
-(function() {
-  'use strict';
-
-  var isLocalhost = Boolean(window.location.hostname === 'localhost' ||
+((() => {
+  const isLocalhost = Boolean(window.location.hostname === 'localhost' ||
       window.location.hostname === '[::1]' ||
       window.location.hostname.match(
         /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
@@ -11,15 +9,15 @@
   if ('serviceWorker' in navigator &&
       (window.location.protocol === 'https:' || isLocalhost)) {
     navigator.serviceWorker.register('service-worker.js')
-    .then(function(registration) {
-      registration.onupdatefound = function() {
+    .then(registration => {
+      registration.onupdatefound = () => {
         if (navigator.serviceWorker.controller) {
-          var installingWorker = registration.installing;
+          const installingWorker = registration.installing;
 
-          installingWorker.onstatechange = function() {
+          installingWorker.onstatechange = () => {
             switch (installingWorker.state) {
               case 'installed':
-              break;
+                break;
 
               case 'redundant':
                 throw new Error('The installing ' +
@@ -31,10 +29,10 @@
           };
         }
       };
-    }).catch(function(e) {
+    }).catch(e => {
       console.error('Error during service worker registration:', e);
     });
   }
 
   // JavaScript goes here
-})();
+}))();
