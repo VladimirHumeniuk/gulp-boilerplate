@@ -1,12 +1,10 @@
-import path from 'path';
-import gulp from 'gulp';
-import del from 'del';
-import runSequence from 'run-sequence';
-import browserSync from 'browser-sync';
-import swPrecache from 'sw-precache';
+import path            from 'path';
+import gulp            from 'gulp';
+import del             from 'del';
+import runSequence     from 'run-sequence';
+import browserSync     from 'browser-sync';
 import gulpLoadPlugins from 'gulp-load-plugins';
-import {output as pagespeed} from 'psi';
-import pkg from './package.json';
+import pkg             from './package.json';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -156,39 +154,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
-    ['lint', 'pug', 'html', 'scripts', 'images', 'copy'],
-    'generate-service-worker',
+    ['pug', 'html', 'scripts', 'images', 'copy'],
     cb
   )
 );
-
-gulp.task('pagespeed', cb =>
-  pagespeed('example.com', {
-    strategy: 'mobile'
-  }, cb)
-);
-
-gulp.task('copy-sw-scripts', () => {
-  return gulp.src(['node_modules/sw-toolbox/sw-toolbox.js', 'app/scripts/sw/runtime-caching.js'])
-    .pipe(gulp.dest('dist/scripts/sw'));
-});
-
-gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
-  const rootDir = 'dist';
-  const filepath = path.join(rootDir, 'service-worker.js');
-
-  return swPrecache.write(filepath, {
-    cacheId: pkg.name || 'web-starter-kit',
-    importScripts: [
-      'scripts/sw/sw-toolbox.js',
-      'scripts/sw/runtime-caching.js'
-    ],
-    staticFileGlobs: [
-      `${rootDir}/images/**/*`,
-      `${rootDir}/scripts/**/*.js`,
-      `${rootDir}/styles/**/*.css`,
-      `${rootDir}/*.{html,json}`
-    ],
-    stripPrefix: rootDir + '/'
-  });
-});
