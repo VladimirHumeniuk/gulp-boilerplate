@@ -1,0 +1,9 @@
+doctype html
+html(lang="en")
+  - var title = "{{ sentenceCase name }}"
+  include core/_head
+  body
+    h1 {{ sentenceCase name }}
+  {{#if needScripts}}
+  include core/_scripts
+  {{/if}}

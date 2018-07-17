@@ -1,0 +1,14 @@
+{
+    "disallowClassLiteralsBeforeIdLiterals": true,
+    "disallowDuplicateAttributes": true,
+    "disallowLegacyMixinCall": true,
+    "disallowHtmlText": true,
+    "disallowIdLiterals": true,
+    "disallowMultipleLineBreaks": true,
+    "disallowTrailingSpaces": true,
+    "requireLineFeedAtFileEnd": true,
+    "requireLowerCaseAttributes": true,
+    "requireLowerCaseTags": true,
+    "validateAttributeQuoteMarks": "\"",
+    "validateIndentation": 2
+}

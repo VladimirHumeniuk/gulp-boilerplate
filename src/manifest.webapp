@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "name": "Starter Kit",
+  "launch_path": "/index.html",
+  "description": "Starter Kit",
+  "icons": {
+    "128": "/images/touch/icon-128x128.png"
+  },
+  "developer": {
+    "name": "",
+    "url": ""
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "en",
+  "permissions": {},
+  "locales": {
+    "en": {
+      "name": "Starter Kit",
+      "description": "Starter kit"
+    }
+  }
+}
