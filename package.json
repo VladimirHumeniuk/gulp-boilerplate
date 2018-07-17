@@ -1,6 +1,6 @@
 {
   "name": "starter-kit",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "description": "GBK Soft starter kit for css projects",
   "main": "index.js",
   "scripts": {
