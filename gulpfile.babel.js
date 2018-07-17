@@ -35,7 +35,7 @@ gulp.task('styles', () => {
   .pipe($.newer('dist/css/'))
   .pipe($.sourcemaps.init())
   .pipe($.sass.sync(
-    {outputStyle: 'compressed'})
+    {outputStyle: 'expanded'})
   )
   .pipe($.postcss(debug(PLUGINS), {parser: syntax}))
   .pipe($.sourcemaps.write('.'))
